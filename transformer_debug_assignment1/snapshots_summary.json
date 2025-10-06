@@ -1,0 +1,1137 @@
+{
+  "metadata": {
+    "project_name": "Mini Transformer Debugging (Optimized)",
+    "created_at": "2025-10-05T20:44:36.376868",
+    "total_snapshots": 43,
+    "expected_snapshots": 43,
+    "status": "complete"
+  },
+  "environment": {
+    "timestamp": "2025-10-05T20:44:36.376886",
+    "python": {
+      "version": "3.12.3",
+      "implementation": "CPython"
+    },
+    "os": {
+      "system": "Linux",
+      "release": "6.6.87.2-microsoft-standard-WSL2"
+    },
+    "wsl": {
+      "is_wsl": true,
+      "distro": "Ubuntu"
+    },
+    "pytorch": {
+      "version": "2.8.0+cpu",
+      "cuda_available": false
+    },
+    "device": "cpu"
+  },
+  "data": {
+    "input_text": "Messi passes the ball to Neymar",
+    "target_text": "Neymar receives the ball from Messi skillfully",
+    "tokens_src": [
+      "Messi",
+      "passes",
+      "the",
+      "ball",
+      "to",
+      "Neymar"
+    ],
+    "tokens_tgt": [
+      "Neymar",
+      "receives",
+      "the",
+      "ball",
+      "from",
+      "Messi",
+      "skillfully"
+    ],
+    "decoder_input_tokens": [
+      "<bos>",
+      "Neymar",
+      "receives",
+      "the",
+      "ball",
+      "from",
+      "Messi",
+      "skillfully"
+    ],
+    "target_tokens": [
+      "Neymar",
+      "receives",
+      "the",
+      "ball",
+      "from",
+      "Messi",
+      "skillfully",
+      "<eos>"
+    ],
+    "vocab_size": 13
+  },
+  "model_config": {
+    "d_model": 128,
+    "nhead": 4,
+    "d_head": 32,
+    "num_encoder_layers": 2,
+    "num_decoder_layers": 2,
+    "dim_feedforward": 256,
+    "vocab_size": 13,
+    "device": "cpu"
+  },
+  "snapshots": [
+    {
+      "number": 1,
+      "name": "Raw_input_tokens_IDS",
+      "shape": [
+        6
+      ],
+      "slice": [
+        4,
+        8,
+        11,
+        6,
+        12,
+        5
+      ],
+      "caption": "Input text: 'Messi passes the ball to Neymar' | Tokens: ['Messi', 'passes', 'the', 'ball', 'to', 'Neymar']"
+    },
+    {
+      "number": 2,
+      "name": "Target_tokens_IDS",
+      "shape": [
+        8
+      ],
+      "slice": [
+        5,
+        9,
+        11,
+        6,
+        7,
+        4,
+        10,
+        2
+      ],
+      "caption": "Target text: 'Neymar receives the ball from Messi skillfully' | Target tokens (with EOS): ['Neymar', 'receives', 'the', 'ball', 'from', 'Messi', 'skillfully', '<eos>'] | Decoder input (with BOS): ['<bos>', 'Neymar', 'receives', 'the', 'ball', 'from', 'Messi', 'skillfully']"
+    },
+    {
+      "number": 3,
+      "name": "Embedding_weight_matrix_slice",
+      "shape": [
+        5,
+        5
+      ],
+      "slice": [
+        [
+          1.926900029182434,
+          1.4873000383377075,
+          0.9006999731063843
+        ],
+        [
+          1.9312000274658203,
+          1.0118999481201172,
+          -1.436400055885315
+        ],
+        [
+          -0.6855000257492065,
+          0.5636000037193298,
+          -1.507200002670288
+        ],
+        [
+          0.6664000153541565,
+          -0.07429999858140945,
+          -0.20960000157356262
+        ]
+      ],
+      "caption": "Embedding matrix 5×5 slice | Full shape: (vocab_size=13, d_model=128)"
+    },
+    {
+      "number": 4,
+      "name": "Input_embeddings_after_lookup",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -15.429300308227539,
+            2.1830999851226807,
+            -6.905099868774414
+          ],
+          [
+            -13.856900215148926,
+            10.893799781799316,
+            -17.85919952392578
+          ]
+        ]
+      ],
+      "caption": "Source embeddings after lookup (scaled by sqrt(d_model))"
+    },
+    {
+      "number": 5,
+      "name": "Embeddings_after_positional_encoding",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -15.429300308227539,
+            3.1830999851226807,
+            -6.905099868774414
+          ],
+          [
+            -13.015399932861328,
+            11.434100151062012,
+            -17.097400665283203
+          ]
+        ]
+      ],
+      "caption": "Source embeddings after adding positional encoding"
+    },
+    {
+      "number": 6,
+      "name": "Encoder_block1_input",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -15.429300308227539,
+            3.1830999851226807,
+            -6.905099868774414
+          ],
+          [
+            -13.015399932861328,
+            11.434100151062012,
+            -17.097400665283203
+          ]
+        ]
+      ],
+      "caption": "Input to first encoder block"
+    },
+    {
+      "number": 7,
+      "name": "Encoder_block1_Q",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            2.072999954223633,
+            -5.811500072479248,
+            10.634599685668945
+          ],
+          [
+            -1.0677000284194946,
+            1.468000054359436,
+            6.274700164794922
+          ]
+        ]
+      ],
+      "caption": "Query projection in encoder self-attention"
+    },
+    {
+      "number": 8,
+      "name": "Encoder_block1_K",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            8.941900253295898,
+            -4.309199810028076,
+            3.8784000873565674
+          ],
+          [
+            13.638699531555176,
+            0.9649999737739563,
+            -2.64520001411438
+          ]
+        ]
+      ],
+      "caption": "Key projection in encoder self-attention"
+    },
+    {
+      "number": 9,
+      "name": "Encoder_block1_V",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            7.892499923706055,
+            -3.8424999713897705,
+            -4.18120002746582
+          ],
+          [
+            2.8101000785827637,
+            -5.906599998474121,
+            -10.275799751281738
+          ]
+        ]
+      ],
+      "caption": "Value projection in encoder self-attention"
+    },
+    {
+      "number": 10,
+      "name": "Encoder_block1_attn_scores_before_softmax",
+      "shape": [
+        1,
+        4,
+        6,
+        6
+      ],
+      "slice": [
+        [
+          [
+            [
+              -21.10409927368164,
+              -41.950401306152344,
+              -21.7455997467041,
+              -14.736599922180176,
+              9.281200408935547,
+              7.828400135040283
+            ]
+          ]
+        ]
+      ],
+      "caption": "Attention scores before softmax (scaled dot-product)"
+    },
+    {
+      "number": 11,
+      "name": "Encoder_block1_attn_scores_after_softmax",
+      "shape": [
+        1,
+        4,
+        6,
+        6
+      ],
+      "slice": [
+        [
+          [
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.8104000091552734,
+              0.18960000574588776
+            ]
+          ]
+        ]
+      ],
+      "caption": "Attention weights after softmax (probabilities)"
+    },
+    {
+      "number": 12,
+      "name": "Encoder_block1_multihead_split_QKV",
+      "shape": [
+        3,
+        1,
+        4,
+        6,
+        32
+      ],
+      "slice": [
+        [
+          [
+            [
+              [
+                2.072999954223633,
+                -5.811500072479248,
+                10.634599685668945,
+                4.1016998291015625,
+                -5.568600177764893,
+                9.843099594116211,
+                0.094200000166893,
+                -10.067299842834473,
+                3.0127999782562256,
+                1.3243000507354736,
+                5.229800224304199,
+                -5.780300140380859
+              ]
+            ]
+          ]
+        ]
+      ],
+      "caption": "Q/K/V all split into heads: (3, batch, heads, seq, d_head)"
+    },
+    {
+      "number": 13,
+      "name": "Encoder_block1_attn_concat_output",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -0.3693999946117401,
+            0.6985999941825867,
+            0.5335000157356262
+          ],
+          [
+            -5.289999961853027,
+            6.132400035858154,
+            1.0247999429702759
+          ]
+        ]
+      ],
+      "caption": "Multi-head attention output after concatenation"
+    },
+    {
+      "number": 14,
+      "name": "Encoder_block1_residual_after_attn",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -7.0065999031066895,
+            6.9191999435424805,
+            -3.9416000843048096
+          ],
+          [
+            -10.424300193786621,
+            11.339400291442871,
+            -16.735599517822266
+          ]
+        ]
+      ],
+      "caption": "After adding residual connection (src + attn_out)"
+    },
+    {
+      "number": 15,
+      "name": "Encoder_block1_layernorm1_output",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -0.6919999718666077,
+            0.44920000433921814,
+            -0.4408999979496002
+          ],
+          [
+            -1.0425000190734863,
+            0.8259000182151794,
+            -1.5844000577926636
+          ]
+        ]
+      ],
+      "caption": "After layer normalization"
+    },
+    {
+      "number": 16,
+      "name": "Encoder_block1_ff_input",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -0.6919999718666077,
+            0.44920000433921814,
+            -0.4408999979496002
+          ],
+          [
+            -1.0425000190734863,
+            0.8259000182151794,
+            -1.5844000577926636
+          ]
+        ]
+      ],
+      "caption": "Input to feed-forward network"
+    },
+    {
+      "number": 17,
+      "name": "Encoder_block1_ff_linear1_output",
+      "shape": [
+        1,
+        6,
+        256
+      ],
+      "slice": [
+        [
+          [
+            -0.8572999835014343,
+            -0.25029999017715454,
+            -0.06360000371932983
+          ],
+          [
+            -0.4011000096797943,
+            -0.18070000410079956,
+            0.5031999945640564
+          ]
+        ]
+      ],
+      "caption": "After first FF linear layer (expansion to 256)"
+    },
+    {
+      "number": 18,
+      "name": "Encoder_block1_ff_linear2_output",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            0.18979999423027039,
+            -0.15309999883174896,
+            -0.05590000003576279
+          ],
+          [
+            0.17890000343322754,
+            -0.2962999939918518,
+            -0.27880001068115234
+          ]
+        ]
+      ],
+      "caption": "After second FF linear layer (projection back to 128)"
+    },
+    {
+      "number": 19,
+      "name": "Encoder_block1_final_output",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -0.5109999775886536,
+            0.26739999651908875,
+            -0.5055999755859375
+          ],
+          [
+            -0.8601999878883362,
+            0.5443999767303467,
+            -1.867900013923645
+          ]
+        ]
+      ],
+      "caption": "Final output of first encoder block"
+    },
+    {
+      "number": 20,
+      "name": "Decoder_block1_input",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            21.848600387573242,
+            12.44789981842041,
+            -16.251100540161133
+          ],
+          [
+            -13.625300407409668,
+            0.1054999977350235,
+            22.41390037536621
+          ]
+        ]
+      ],
+      "caption": "Input to first decoder block"
+    },
+    {
+      "number": 21,
+      "name": "Decoder_block1_masked_Q",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -5.041299819946289,
+            0.49390000104904175,
+            7.617700099945068
+          ],
+          [
+            -12.140899658203125,
+            -12.040399551391602,
+            2.2973999977111816
+          ]
+        ]
+      ],
+      "caption": "Query in masked self-attention"
+    },
+    {
+      "number": 22,
+      "name": "Decoder_block1_masked_K",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            6.112400054931641,
+            -6.758699893951416,
+            7.036099910736084
+          ],
+          [
+            3.621299982070923,
+            -2.7018001079559326,
+            3.4969000816345215
+          ]
+        ]
+      ],
+      "caption": "Key in masked self-attention"
+    },
+    {
+      "number": 23,
+      "name": "Decoder_block1_masked_V",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            7.395199775695801,
+            1.0219999551773071,
+            -5.420599937438965
+          ],
+          [
+            11.449000358581543,
+            0.5613999962806702,
+            -6.920599937438965
+          ]
+        ]
+      ],
+      "caption": "Value in masked self-attention"
+    },
+    {
+      "number": 24,
+      "name": "Decoder_block1_masked_scores_before_mask",
+      "shape": [
+        1,
+        4,
+        8,
+        8
+      ],
+      "slice": [
+        [
+          [
+            [
+              31.1924991607666,
+              20.108600616455078,
+              10.929200172424316,
+              -59.156700134277344,
+              -24.699499130249023,
+              -37.91669845581055,
+              -20.348400115966797,
+              -8.227899551391602
+            ]
+          ]
+        ]
+      ],
+      "caption": "Attention scores BEFORE applying causal mask"
+    },
+    {
+      "number": 25,
+      "name": "Decoder_block1_mask_tensor",
+      "shape": [
+        1,
+        1,
+        8,
+        8
+      ],
+      "slice": [
+        [
+          [
+            [
+              0.0,
+              -Infinity,
+              -Infinity,
+              -Infinity,
+              -Infinity,
+              -Infinity,
+              -Infinity,
+              -Infinity
+            ]
+          ]
+        ]
+      ],
+      "caption": "Causal mask tensor (upper triangle = -inf)"
+    },
+    {
+      "number": 26,
+      "name": "Decoder_block1_masked_scores_after_softmax",
+      "shape": [
+        1,
+        4,
+        8,
+        8
+      ],
+      "slice": [
+        [
+          [
+            [
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ]
+          ]
+        ]
+      ],
+      "caption": "Attention weights after mask + softmax (lower triangular)"
+    },
+    {
+      "number": 27,
+      "name": "Decoder_block1_masked_multihead_split_QKV",
+      "shape": [
+        3,
+        1,
+        4,
+        8,
+        32
+      ],
+      "slice": [
+        [
+          [
+            [
+              [
+                -5.041299819946289,
+                0.49390000104904175,
+                7.617700099945068,
+                5.412700176239014,
+                -2.6703999042510986,
+                -2.461400032043457,
+                -3.506200075149536,
+                -9.074399948120117,
+                6.981299877166748,
+                3.232100009918213,
+                1.4739999771118164,
+                6.856500148773193
+              ]
+            ]
+          ]
+        ]
+      ],
+      "caption": "Masked Q/K/V all split into heads: (3, batch, heads, seq, d_head)"
+    },
+    {
+      "number": 28,
+      "name": "Decoder_block1_masked_multihead_concat",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            7.395199775695801,
+            1.0219999551773071,
+            -5.420599937438965
+          ],
+          [
+            11.449000358581543,
+            0.5613999962806702,
+            -6.920599937438965
+          ]
+        ]
+      ],
+      "caption": "Masked self-attention output after concat"
+    },
+    {
+      "number": 29,
+      "name": "Decoder_block1_residual_norm_after_masked",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            1.510200023651123,
+            0.9805999994277954,
+            -0.9513999819755554
+          ],
+          [
+            -1.023900032043457,
+            -0.5051000118255615,
+            2.257699966430664
+          ]
+        ]
+      ],
+      "caption": "After residual + norm following masked self-attention"
+    },
+    {
+      "number": 30,
+      "name": "Decoder_block1_cross_Q",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            -0.39649999141693115,
+            -0.6402999758720398,
+            0.37959998846054077
+          ],
+          [
+            -0.6230000257492065,
+            -0.2653999924659729,
+            0.048500001430511475
+          ]
+        ]
+      ],
+      "caption": "Query from decoder in cross-attention"
+    },
+    {
+      "number": 31,
+      "name": "Decoder_block1_cross_K",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            0.0015999999595806003,
+            0.9369000196456909,
+            0.8924000263214111
+          ],
+          [
+            -1.021299958229065,
+            0.3596999943256378,
+            0.6168000102043152
+          ]
+        ]
+      ],
+      "caption": "Key from encoder in cross-attention"
+    },
+    {
+      "number": 32,
+      "name": "Decoder_block1_cross_V",
+      "shape": [
+        1,
+        6,
+        128
+      ],
+      "slice": [
+        [
+          [
+            0.7723000049591064,
+            -0.3716999888420105,
+            0.8066999912261963
+          ],
+          [
+            0.5117999911308289,
+            0.7350000143051147,
+            0.8317999839782715
+          ]
+        ]
+      ],
+      "caption": "Value from encoder in cross-attention"
+    },
+    {
+      "number": 33,
+      "name": "Decoder_block1_cross_scores_before_softmax",
+      "shape": [
+        1,
+        4,
+        8,
+        6
+      ],
+      "slice": [
+        [
+          [
+            [
+              -0.37689998745918274,
+              0.6787999868392944,
+              0.25619998574256897,
+              0.29760000109672546,
+              0.4041999876499176,
+              0.38929998874664307
+            ]
+          ]
+        ]
+      ],
+      "caption": "Cross-attention scores before softmax"
+    },
+    {
+      "number": 34,
+      "name": "Decoder_block1_cross_scores_after_softmax",
+      "shape": [
+        1,
+        4,
+        8,
+        6
+      ],
+      "slice": [
+        [
+          [
+            [
+              0.08290000259876251,
+              0.23839999735355377,
+              0.15620000660419464,
+              0.16279999911785126,
+              0.181099995970726,
+              0.1784999966621399
+            ]
+          ]
+        ]
+      ],
+      "caption": "Cross-attention weights: (batch, heads, tgt_len, src_len)"
+    },
+    {
+      "number": 35,
+      "name": "Decoder_block1_cross_attn_concat",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            0.19599999487400055,
+            0.44279998540878296,
+            0.12839999794960022
+          ],
+          [
+            0.20069999992847443,
+            0.2705000042915344,
+            0.19939999282360077
+          ]
+        ]
+      ],
+      "caption": "Cross-attention output after concat"
+    },
+    {
+      "number": 36,
+      "name": "Decoder_block1_residual_norm_after_cross",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            1.3414000272750854,
+            1.2807999849319458,
+            -0.694100022315979
+          ],
+          [
+            -1.0741000175476074,
+            -0.3149999976158142,
+            2.5315001010894775
+          ]
+        ]
+      ],
+      "caption": "After residual + norm following cross-attention"
+    },
+    {
+      "number": 37,
+      "name": "Decoder_block1_ff_input",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            1.3414000272750854,
+            1.2807999849319458,
+            -0.694100022315979
+          ],
+          [
+            -1.0741000175476074,
+            -0.3149999976158142,
+            2.5315001010894775
+          ]
+        ]
+      ],
+      "caption": "Input to decoder feed-forward"
+    },
+    {
+      "number": 38,
+      "name": "Decoder_block1_ff_linear1_output",
+      "shape": [
+        1,
+        8,
+        256
+      ],
+      "slice": [
+        [
+          [
+            -0.44200000166893005,
+            -0.1818999946117401,
+            -0.8949999809265137
+          ],
+          [
+            0.43880000710487366,
+            -0.7486000061035156,
+            1.003100037574768
+          ]
+        ]
+      ],
+      "caption": "After decoder FF first linear layer"
+    },
+    {
+      "number": 39,
+      "name": "Decoder_block1_ff_linear2_output",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            0.29089999198913574,
+            0.2152000069618225,
+            -0.07109999656677246
+          ],
+          [
+            0.024299999698996544,
+            -0.038600001484155655,
+            0.04280000180006027
+          ]
+        ]
+      ],
+      "caption": "After decoder FF second linear layer"
+    },
+    {
+      "number": 40,
+      "name": "Decoder_block1_final_output",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            1.6181999444961548,
+            1.4851000308990479,
+            -0.7213000059127808
+          ],
+          [
+            -0.9717000126838684,
+            -0.31220000982284546,
+            2.461699962615967
+          ]
+        ]
+      ],
+      "caption": "Final output of first decoder block"
+    },
+    {
+      "number": 41,
+      "name": "Decoder_final_sequence_output_before_projection",
+      "shape": [
+        1,
+        8,
+        128
+      ],
+      "slice": [
+        [
+          [
+            1.0469000339508057,
+            1.500599980354309,
+            -0.9280999898910522
+          ],
+          [
+            -1.1766999959945679,
+            -0.2240999937057495,
+            1.791100025177002
+          ]
+        ]
+      ],
+      "caption": "Final decoder output before projection to vocabulary"
+    },
+    {
+      "number": 42,
+      "name": "Logits_after_final_projection",
+      "shape": [
+        1,
+        8,
+        13
+      ],
+      "slice": [
+        [
+          [
+            -0.8881000280380249,
+            0.21449999511241913,
+            0.06270000338554382
+          ],
+          [
+            0.6478999853134155,
+            -0.7554000020027161,
+            -1.2462999820709229
+          ]
+        ]
+      ],
+      "caption": "Logits: (batch, tgt_len, vocab_size=13)"
+    },
+    {
+      "number": 43,
+      "name": "Logits_slice_first_token",
+      "shape": [
+        10
+      ],
+      "slice": [
+        -0.8881000280380249,
+        0.21449999511241913,
+        0.06270000338554382,
+        -0.9031999707221985,
+        -0.7861999869346619,
+        0.34439998865127563,
+        -0.38929998874664307,
+        1.030900001525879,
+        -0.21699999272823334,
+        0.4846000075340271
+      ],
+      "caption": "First 10 logits for first token (to predict next word)"
+    }
+  ]
+}
