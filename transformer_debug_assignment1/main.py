@@ -1,16 +1,3 @@
-"""
-Mini Transformer Debugging (Lite & Optimized)
-
-Key Features:
-- Single breakpoint strategy (stops 43 times automatically)
-- Smart slicing (max 12 elements per snapshot → JSON ~400 lines)
-- No .npy files, no pip_freeze, no unnecessary validation
-- Error handling with backup
-- Clean feedback and progress tracking
-
-Author: Optimized based on comprehensive review
-"""
-
 import os
 import json
 import numpy as np
@@ -753,21 +740,3 @@ if __name__ == "__main__":
             print(f"💾 Saved to backup: {backup_path}")
         except Exception as e2:
             print(f"❌ Failed to save backup as well: {e2}")
-
-    # Final instructions
-    print("\n" + "=" * 80)
-    print("📌 Next Steps for PyCharm Debugging:")
-    print("=" * 80)
-    print("1. Open this file in PyCharm")
-    print("2. Find the save_snapshot() function")
-    print("3. Place breakpoint on the line: 'pass  # Will stop at each...'")
-    print("4. Click Debug (🐞) button instead of Run")
-    print("5. When it stops at first snapshot:")
-    print("   - Check 'Variables' pane at bottom")
-    print("   - You'll see: num, name, arr, small, etc.")
-    print("   - Take screenshot of Variables pane")
-    print("6. Press F9 (Resume) to go to next snapshot")
-    print("7. Repeat step 5-6 until all 43 screenshots are captured")
-    print("=" * 80)
-    print("\n✨ All done! Good luck with your assignment! 🎓")
-    print("=" * 80)
